@@ -40,7 +40,11 @@ def predict():
         probabilities = {key.replace("Scored Probabilities_", ""): round(value * 100, 2) for key, value in result_data.items() if key.startswith("Scored Probabilities")}
         return jsonify({"Scored Label": scored_label, "Probabilities": probabilities})
     except urllib.error.HTTPError as error:
-        return jsonify({"error": error.code, "message": error.read().decode("utf8", 'ignore')})
+        error_message = error.read().decode("utf8", 'ignore')
+        if "<!DOCTYPE" in error_message:
+            return jsonify({"error": error.code, "message": "Azure Internal Server Error. Check Model Deployment or API Key"}), 500
+        return jsonify({"error": error.code, "message": error_message}), 500
+
 
 if __name__ == '__main__':
     from flask_cors import CORS

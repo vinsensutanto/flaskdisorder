@@ -193,7 +193,15 @@
             body: JSON.stringify(data)
         });
 
-        const result = await response.json();
+        if (response.headers.get("Content-Type").includes("application/json")) {
+            const result = await response.json();
+        } else {
+            const text = await response.text();
+            console.log("ERROR: ", text);
+            document.getElementById('result').innerHTML = `<div class="alert alert-danger">${text}</div>`;
+            return;
+        }
+        
         const resultDiv = document.getElementById('result');
         resultDiv.innerHTML = `<h3>Predicted Disorder: ${result["Scored Label"]}</h3>`;
         resultDiv.innerHTML += '<ul class="list-group">';
