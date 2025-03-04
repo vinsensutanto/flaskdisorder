@@ -1,0 +1,19 @@
+{
+    "routes": [
+      {
+        "route": "/",
+        "serve": "/index.html",
+        "allowedMethods": ["GET", "POST", "OPTIONS"]
+      },
+      {
+        "route": "/predict",
+        "allowedMethods": ["POST", "OPTIONS"]
+      }
+    ],
+    "responseOverrides": {
+      "404": {
+        "rewrite": "/index.html"
+      }
+    }
+  }
+  

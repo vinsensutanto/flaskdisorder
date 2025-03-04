@@ -42,4 +42,4 @@ jobs:
 
       - name: Purge Azure Cache 🔥
         run: |
-          curl -X POST "https://${{ secrets.AZURE_WEBAPP_URL }}/?nocache=true"
+          curl -X POST "https://${{ secrets.AZURE_WEBAPP_URL }}/?nocache=true"  
