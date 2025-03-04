@@ -22,11 +22,20 @@ def index():
 
 @app.route('/predict', methods=['POST'])
 def predict():
+    try:
+        data = request.get_json(force=True)  # force=True makes sure JSON is always parsed
+        if not data:
+            return jsonify({"error": "Empty JSON payload"}), 400
+        
+        # Your Prediction Logic Here...
+        return jsonify({"prediction": "Result"}), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+    
     logging.debug(f"Incoming Data: {request.data}")
     logging.debug(f"Headers: {request.headers}")
-    data = request.get_json()
-    if not data:
-        return jsonify({"error": "Invalid JSON Format"}), 400
 
     body = str.encode(json.dumps({"Inputs": {"input1": [data]}, "GlobalParameters": {}}))
 
