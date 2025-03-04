@@ -7,8 +7,8 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 
 app = Flask(__name__)
+app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
 
-# ✅ Fix here — Move the function OUTSIDE
 def allowSelfSignedHttps(allowed=True):
     if allowed and not os.environ.get('PYTHONHTTPSVERIFY', '') and getattr(ssl, '_create_unverified_context', None):
         ssl._create_default_https_context = ssl._create_unverified_context
@@ -47,10 +47,8 @@ def predict():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-if __name__ == '__main__':
-    from flask_cors import CORS
-    CORS(app)
-    app.run(debug=True)
+from flask_cors import CORS
+CORS(app, resources={r"/*": {"origins": "*"}})  # Izinin semua origin
     
 @app.errorhandler(Exception)
 def handle_exception(e):
