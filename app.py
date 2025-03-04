@@ -9,6 +9,7 @@ logging.basicConfig(level=logging.DEBUG)
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
 
+
 def allowSelfSignedHttps(allowed=True):
     if allowed and not os.environ.get('PYTHONHTTPSVERIFY', '') and getattr(ssl, '_create_unverified_context', None):
         ssl._create_default_https_context = ssl._create_unverified_context
@@ -49,13 +50,6 @@ def predict():
 
 from flask_cors import CORS
 CORS(app, resources={r"/*": {"origins": "*"}})  # Izinin semua origin
-
-@app.after_request
-def add_headers(response):
-    response.headers["Access-Control-Allow-Origin"] = "*"
-    response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
-    response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
-    return response
     
 @app.errorhandler(Exception)
 def handle_exception(e):
