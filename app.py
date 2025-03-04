@@ -3,6 +3,8 @@ import urllib.request
 import json
 import os
 import ssl
+import logging
+logging.basicConfig(level=logging.DEBUG)
 
 app = Flask(__name__)
 
@@ -18,7 +20,10 @@ def index():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    data = request.json
+    data = request.get_json()
+    if not data:
+        return jsonify({"error": "Invalid JSON Format"}), 400
+
     body = str.encode(json.dumps({"Inputs": {"input1": [data]}, "GlobalParameters": {}}))
 
     url = 'https://ac53101f-0356-4de0-bfb5-83276dd7e6ad.eastus2.azurecontainer.io/score'
@@ -39,3 +44,7 @@ def predict():
 
 if __name__ == '__main__':
     app.run(debug=True)
+    
+@app.errorhandler(Exception)
+def handle_exception(e):
+    return jsonify({"error": str(e)}), 500
