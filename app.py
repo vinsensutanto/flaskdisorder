@@ -12,28 +12,30 @@ def allowSelfSignedHttps(allowed):
 
 allowSelfSignedHttps(True)
 
-@app.route('/', methods=['GET'])
+@app.route('/')
 def index():
-    return render_template('index.html')  # Automatically render index.html on page load
+    return render_template('index.html')
 
-@app.route('/predict', methods=['POST'])
+@app.route('/predict', methods=['POST', 'GET'])
 def predict():
-    data = request.json
-    body = str.encode(json.dumps({"Inputs": {"input1": [data]}, "GlobalParameters": {}}))
-
-    url = 'https://ac53101f-0356-4de0-bfb5-83276dd7e6ad.eastus2.azurecontainer.io/score'
-    api_key = 'OfdoyWgPCQmGmCiHshjrmFgXc4mPsh9E'
-    headers = {'Content-Type': 'application/json', 'Authorization': ('Bearer ' + api_key)}
-
-    req = urllib.request.Request(url, body, headers)
+    if request.method == 'GET':
+        return jsonify({"message": "Only POST method is allowed!"}), 405  # HTTP 405 Method Not Allowed
 
     try:
+        data = request.json
+        body = str.encode(json.dumps({"Inputs": {"input1": [data]}, "GlobalParameters": {}}))
+
+        url = 'https://ac53101f-0356-4de0-bfb5-83276dd7e6ad.eastus2.azurecontainer.io/score'
+        api_key = 'OfdoyWgPCQmGmCiHshjrmFgXc4mPsh9E'
+        headers = {'Content-Type': 'application/json', 'Authorization': ('Bearer ' + api_key)}
+
+        req = urllib.request.Request(url, body, headers)
         response = urllib.request.urlopen(req)
         result = json.loads(response.read())
         return jsonify(result)
+
     except urllib.error.HTTPError as error:
         return jsonify({"error": error.code, "message": error.read().decode("utf8", 'ignore')})
-
 
 if __name__ == '__main__':
     app.run(debug=True)
