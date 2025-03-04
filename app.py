@@ -12,15 +12,12 @@ def allowSelfSignedHttps(allowed):
 
 allowSelfSignedHttps(True)
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def index():
-    return render_template('index.html')
+    return render_template('index.html')  # Automatically render index.html on page load
 
-@app.route('/predict', methods=['GET', 'POST'])
+@app.route('/predict', methods=['POST'])
 def predict():
-    if request.method == 'GET':
-        return jsonify({"message": "Use POST method to send data!"})
-
     data = request.json
     body = str.encode(json.dumps({"Inputs": {"input1": [data]}, "GlobalParameters": {}}))
 
@@ -33,10 +30,10 @@ def predict():
     try:
         response = urllib.request.urlopen(req)
         result = json.loads(response.read())
-        result_data = result["Results"]["WebServiceOutput0"]
-        return jsonify({"Results": {"WebServiceOutput0": result_data}})
+        return jsonify(result)
     except urllib.error.HTTPError as error:
         return jsonify({"error": error.code, "message": error.read().decode("utf8", 'ignore')})
+
 
 if __name__ == '__main__':
     app.run(debug=True)
