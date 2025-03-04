@@ -1,10 +1,13 @@
 from flask import Flask, request, jsonify, render_template
-import urllib.request
-import json
+from flask_cors import CORS
 import os
 import ssl
+import urllib.request
+import json
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')  # THIS 🔥
+
+CORS(app)
 
 def allowSelfSignedHttps(allowed):
     if allowed and not os.environ.get('PYTHONHTTPSVERIFY', '') and getattr(ssl, '_create_unverified_context', None):
@@ -14,13 +17,10 @@ allowSelfSignedHttps(True)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html')  # Serve HTML Here
 
-@app.route('/predict', methods=['POST', 'GET'])
+@app.route('/predict', methods=['POST'])
 def predict():
-    if request.method == 'GET':
-        return jsonify({"message": "Only POST method is allowed!"}), 405  # HTTP 405 Method Not Allowed
-
     try:
         data = request.json
         body = str.encode(json.dumps({"Inputs": {"input1": [data]}, "GlobalParameters": {}}))
