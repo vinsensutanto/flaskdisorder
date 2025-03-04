@@ -16,7 +16,7 @@ allowSelfSignedHttps(True)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('./index.html')
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -43,6 +43,8 @@ def predict():
         return jsonify({"error": error.code, "message": error.read().decode("utf8", 'ignore')})
 
 if __name__ == '__main__':
+    from flask_cors import CORS
+    CORS(app)
     app.run(debug=True)
     
 @app.errorhandler(Exception)
