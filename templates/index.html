@@ -135,7 +135,111 @@
             <option>High</option>
         </select>
     </div>
-            
+    <div class="mb-3">
+        <label for="Birthasphyxia" class="form-label">Birth Asphyxia</label>
+        <select class="form-control" id="Birthasphyxia" name="Birthasphyxia" required>
+            <option value="true" selected>Yes</option>
+            <option value="false">No</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="Folicaciddetails" class="form-label">Folic Acid Details</label>
+        <select class="form-control" id="Folicaciddetails" name="Folicaciddetails" required>
+            <option value="true">Yes</option>
+            <option value="false" selected>No</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="H/Oseriousmaternalillness" class="form-label">History of Serious Maternal Illness</label>
+        <select class="form-control" id="H/Oseriousmaternalillness" name="H/Oseriousmaternalillness" required>
+            <option value="true" selected>Yes</option>
+            <option value="false">No</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="H/Oradiationexposure" class="form-label">History of Radiation Exposure</label>
+        <select class="form-control" id="H/Oradiationexposure" name="H/Oradiationexposure" required>
+            <option value="true">Yes</option>
+            <option value="false" selected>No</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="H/Osubstanceabuse" class="form-label">History of Substance Abuse</label>
+        <select class="form-control" id="H/Osubstanceabuse" name="H/Osubstanceabuse" required>
+            <option value="true">Yes</option>
+            <option value="false" selected>No</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="TotalBloodCellCount" class="form-label">Total Blood Cell Count</label>
+        <input type="number" step="0.1" class="form-control" id="TotalBloodCellCount" name="TotalBloodCellCount" value="12.38" required>
+    </div>
+    <div class="mb-3">
+        <label for="TotalSymptoms" class="form-label">Total Symptoms</label>
+        <input type="number" step="1" class="form-control" id="TotalSymptoms" name="TotalSymptoms" value="2.0" required>
+    </div>
+    <div class="mb-3">
+        <label for="AssistedconceptionIVFART" class="form-label">Assisted Conception (IVF/ART)</label>
+        <select class="form-control" id="AssistedconceptionIVFART" name="AssistedconceptionIVFART" required>
+            <option value="true">Yes</option>
+            <option value="false" selected>No</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="Historyofanomaliesinpreviouspregnancies" class="form-label">History of Anomalies in Previous Pregnancies</label>
+        <select class="form-control" id="Historyofanomaliesinpreviouspregnancies" name="Historyofanomaliesinpreviouspregnancies" required>
+            <option value="true">Yes</option>
+            <option value="false" selected>No</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="Noofpreviousabortion" class="form-label">Number of Previous Abortions</label>
+        <input type="number" step="0.1" class="form-control" id="Noofpreviousabortion" name="Noofpreviousabortion" value="4.0" required>
+    </div>
+    <div class="mb-3">
+        <label for="Birthdefects" class="form-label">Birth Defects</label>
+        <select class="form-control" id="Birthdefects" name="Birthdefects" required>
+            <option>Singular</option>
+            <option>Multiple</option>
+            <option>None</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="WhiteBloodcellcount" class="form-label">White Blood Cell Count</label>
+        <input type="number" step="0.1" class="form-control" id="WhiteBloodcellcount" name="WhiteBloodcellcount" value="3.0" required>
+    </div>
+    <div class="mb-3">
+        <label for="Bloodtestresult" class="form-label">Blood Test Result</label>
+        <select class="form-control" id="Bloodtestresult" name="Bloodtestresult" required>
+            <option>Inconclusive</option>
+            <option>Normal</option>
+            <option>Abnormal</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Symptoms</label>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="Symptom1" name="Symptom1" value="1.0" checked>
+            <label class="form-check-label" for="Symptom1">Symptom 1</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="Symptom2" name="Symptom2" value="0.0">
+            <label class="form-check-label" for="Symptom2">Symptom 2</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="Symptom3" name="Symptom3" value="1.0" checked>
+            <label class="form-check-label" for="Symptom3">Symptom 3</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="Symptom4" name="Symptom4" value="1.0" checked>
+            <label class="form-check-label" for="Symptom4">Symptom 4</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="Symptom5" name="Symptom5" value="1.0" checked>
+            <label class="form-check-label" for="Symptom5">Symptom 5</label>
+        </div>
+    </div>
+
     <button type="button" onclick="predict()" class="btn btn-success">Predict</button>
 </form>
 <div id="result" class="container result-card"></div>
@@ -153,39 +257,39 @@
             }
         });*/
         const data = {
-            "PatientAge": 4.0,
-            "Genesinmother'sside": true,
-            "Genesinfather'sside": false,
-            "Maternalgene": true,
-            "Paternalgene": true,
-            "Bloodcellcount": 4.99,
-            "Mother'sage": 35.5,
-            "Father'sage": 20.0,
-            "Status": "Alive",
-            "RespiratoryRate": "Tachypnea",
-            "HeartRate": "Tachycardia",
-            "Followup": "Low",
-            "Gender": "Ambiguous",
-            "Birthasphyxia": true,
-            "Folicaciddetails": false,
-            "H/Oseriousmaternalillness": true,
-            "H/Oradiationexposure": false,
-            "H/Osubstanceabuse": false,
-            "AssistedconceptionIVFART": false,
-            "Historyofanomaliesinpreviouspregnancies": false,
-            "Noofpreviousabortion": 4.0,
-            "Birthdefects": "Singular",
-            "WhiteBloodcellcount": 3.0,
-            "Bloodtestresult": "inconclusive",
-            "Symptom1": 1.0,
-            "Symptom2": 0.0,
-            "Symptom3": 1.0,
-            "Symptom4": 1.0,
-            "Symptom5": 1.0,
-            "TotalBloodCellCount": 12.38,
-            "TotalSymptoms": 2.0
+            "PatientAge": parseFloat(document.getElementById('PatientAge').value),
+            "Genesinmother'sside": document.getElementById("Genesinmother'sside").value === "true",
+            "Genesinfather'sside": document.getElementById("Genesinfather'sside").value === "true",
+            "Maternalgene": document.getElementById("Maternalgene").value === "true",
+            "Paternalgene": document.getElementById("Paternalgene").value === "true",
+            "Bloodcellcount": parseFloat(document.getElementById('Bloodcellcount').value),
+            "Mother'sage": parseFloat(document.getElementById("Mother'sage").value),
+            "Father'sage": parseFloat(document.getElementById("Father'sage").value),
+            "Status": document.getElementById("Status").value,
+            "RespiratoryRate": document.getElementById("RespiratoryRate").value,
+            "HeartRate": document.getElementById("HeartRate").value,
+            "Followup": document.getElementById("Followup").value,
+            "Gender": document.getElementById("Gender").value,
+            "Birthasphyxia": document.getElementById('Birthasphyxia').value === "true",
+            "Folicaciddetails": document.getElementById('Folicaciddetails').value === "true",
+            "H/Oseriousmaternalillness": document.getElementById('H/Oseriousmaternalillness').value === "true",
+            "H/Oradiationexposure": document.getElementById('H/Oradiationexposure').value === "true",
+            "H/Osubstanceabuse": document.getElementById('H/Osubstanceabuse').value === "true",
+            "TotalBloodCellCount": parseFloat(document.getElementById('TotalBloodCellCount').value),
+            "TotalSymptoms": parseFloat(document.getElementById('TotalSymptoms').value),
+            "AssistedconceptionIVFART": document.getElementById("AssistedconceptionIVFART").value === "true",
+            "Historyofanomaliesinpreviouspregnancies": document.getElementById("Historyofanomaliesinpreviouspregnancies").value === "true",
+            "Noofpreviousabortion": parseFloat(document.getElementById("Noofpreviousabortion").value),
+            "Birthdefects": document.getElementById("Birthdefects").value,
+            "WhiteBloodcellcount": parseFloat(document.getElementById("WhiteBloodcellcount").value),
+            "Bloodtestresult": document.getElementById("Bloodtestresult").value,
+            "Symptom1": parseFloat(document.getElementById("Symptom1").value),
+            "Symptom2": parseFloat(document.getElementById("Symptom2").value),
+            "Symptom3": parseFloat(document.getElementById("Symptom3").value),
+            "Symptom4": parseFloat(document.getElementById("Symptom4").value),
+            "Symptom5": parseFloat(document.getElementById("Symptom5").value)
         };
-        const response = await fetch('https://geneticdisorderprediction-d8f5cyb4bvaxfcaj.centralus-01.azurewebsites.net/predict', {
+        const response = await fetch('/predict', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -193,15 +297,7 @@
             body: JSON.stringify(data)
         });
 
-        if (response.headers.get("Content-Type").includes("application/json")) {
-            const result = await response.json();
-        } else {
-            const text = await response.text();
-            console.log("ERROR: ", text);
-            document.getElementById('result').innerHTML = `<div class="alert alert-danger">${text}</div>`;
-            return;
-        }
-        
+        const result = await response.json();
         const resultDiv = document.getElementById('result');
         resultDiv.innerHTML = `<h3>Predicted Disorder: ${result["Scored Label"]}</h3>`;
         resultDiv.innerHTML += '<ul class="list-group">';
