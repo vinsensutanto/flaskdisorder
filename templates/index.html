@@ -247,15 +247,8 @@
 <script>
     async function predict() {
         const form = document.getElementById('predictionForm');
-        /*const formData = new FormData(form);
-        let data = {};
-        formData.forEach((value, key) => {
-            if (value === "true" || value === "false") {
-                data[key] = value === "true";
-            } else {
-                data[key] = isNaN(parseFloat(value)) ? value : parseFloat(value);
-            }
-        });*/
+        const resultDiv = document.getElementById('result');
+    
         const data = {
             "PatientAge": parseFloat(document.getElementById('PatientAge').value),
             "Genesinmother'sside": document.getElementById("Genesinmother'sside").value === "true",
@@ -289,23 +282,37 @@
             "Symptom4": parseFloat(document.getElementById("Symptom4").value),
             "Symptom5": parseFloat(document.getElementById("Symptom5").value)
         };
-        const response = await fetch('/predict', {
+    
+        const response = await fetch(window.location.origin + '/predict', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
         });
-
+    
         const result = await response.json();
-        const resultDiv = document.getElementById('result');
-        resultDiv.innerHTML = `<h3>Predicted Disorder: ${result["Scored Label"]}</h3>`;
-        resultDiv.innerHTML += '<ul class="list-group">';
-        for (const [key, value] of Object.entries(result["Probabilities"])) {
-            resultDiv.innerHTML += `<li class="list-group-item">${key.replace("Scored Probabilities_", "")}: ${value}%</li>`;
+        resultDiv.innerHTML = "";
+    
+        if (result["Results"] && result["Results"]["WebServiceOutput0"]) {
+            const outputs = result["Results"]["WebServiceOutput0"];
+            outputs.forEach((output, index) => {
+                resultDiv.innerHTML += `<h3>Prediction ${index + 1}: ${output["Scored Labels"]}</h3>`;
+                resultDiv.innerHTML += '<ul class="list-group">';
+                const probabilities = Object.entries(output)
+                    .filter(([key]) => key.startsWith("Scored Probabilities"))
+                    .sort((a, b) => b[1] - a[1]); // Sorting Highest to Lowest
+    
+                probabilities.forEach(([key, value]) => {
+                    resultDiv.innerHTML += `<li class="list-group-item">${key.replace("Scored Probabilities_", "")}: ${Math.round(value * 100)}%</li>`;
+                });
+    
+                resultDiv.innerHTML += '</ul><hr>';
+            });
+        } else {
+            resultDiv.innerHTML = `<p class="text-danger">No Prediction Found!</p>`;
         }
-        resultDiv.innerHTML += '</ul>';
-    }
+    }    
 </script>
 </body>
 </html>

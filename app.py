@@ -21,7 +21,7 @@ def predict():
     data = request.json
     body = str.encode(json.dumps({"Inputs": {"input1": [data]}, "GlobalParameters": {}}))
 
-    url = 'http://ac53101f-0356-4de0-bfb5-83276dd7e6ad.eastus2.azurecontainer.io/score'
+    url = 'https://ac53101f-0356-4de0-bfb5-83276dd7e6ad.eastus2.azurecontainer.io/score'
     api_key = 'OfdoyWgPCQmGmCiHshjrmFgXc4mPsh9E' 
     headers = {'Content-Type': 'application/json', 'Authorization': ('Bearer ' + api_key)}
 
