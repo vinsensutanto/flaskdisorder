@@ -8,6 +8,8 @@ logging.basicConfig(level=logging.DEBUG)
 
 app = Flask(__name__)
 
+@app.route('/predict', methods=['POST', 'GET'])
+
 def allowSelfSignedHttps(allowed):
     if allowed and not os.environ.get('PYTHONHTTPSVERIFY', '') and getattr(ssl, '_create_unverified_context', None):
         ssl._create_default_https_context = ssl._create_unverified_context
@@ -20,6 +22,8 @@ def index():
 
 @app.route('/predict', methods=['POST'])
 def predict():
+    logging.debug(f"Incoming Data: {request.data}")
+    logging.debug(f"Headers: {request.headers}")
     data = request.get_json()
     if not data:
         return jsonify({"error": "Invalid JSON Format"}), 400
