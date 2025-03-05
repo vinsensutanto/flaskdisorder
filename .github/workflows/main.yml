@@ -24,7 +24,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run Tests
-        run: pytest || echo "No Tests Found"
+        run: pytest ||echo "No Tests Found"
 
       - name: Deploy to Azure
         uses: azure/webapps-deploy@v2
