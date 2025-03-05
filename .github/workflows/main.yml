@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+env:
+  AZURE_WEBAPP_URL: ${{ secrets.AZURE_WEBAPP_URL }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,7 +26,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Allow JSON Content 🔥
+      - name: Allow JSON Content
         run: |
           echo "SCM_DO_BUILD_DURING_DEPLOYMENT=true" >> $GITHUB_ENV
           echo "WEBSITES_PORT=5000" >> $GITHUB_ENV
@@ -42,4 +45,5 @@ jobs:
 
       - name: Purge Azure Cache 🔥
         run: |
-          curl -X POST "https://${{ secrets.AZURE_WEBAPP_URL }}/?nocache=true"  
+          curl -X POST "${{ secrets.AZURE_WEBAPP_URL }}/?nocache=true" || echo "Cache Purge Failed, but Deployment Successful!"
+        
