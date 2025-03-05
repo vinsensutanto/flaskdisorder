@@ -46,3 +46,11 @@ jobs:
       - name: Purge Azure Cache 🔥
         run: |
           curl -X POST "${{ env.AZURE_WEBAPP_URL }}/?nocache=true" || echo "Cache Purge Failed, but Deploy Successful!"
+
+      - name: Allow JSON Content 🧠
+        run: |
+          echo "PORT=8000" >> $GITHUB_ENV
+          echo "SCM_DO_BUILD_DURING_DEPLOYMENT=true" >> $GITHUB_ENV
+          echo "WEBSITES_PORT=8000" >> $GITHUB_ENV
+          echo "WEBSITES_ENABLE_APP_SERVICE_STORAGE=true" >> $GITHUB_ENV
+          echo "WEBSITES_CONTAINER_START_TIME_LIMIT=1800" >> $GITHUB_ENV

@@ -5,7 +5,7 @@ import ssl
 import urllib.request
 import json
 
-app = Flask(__name__, template_folder='templates')  # THIS 🔥
+app = Flask(__name__, template_folder='templates')
 
 CORS(app)
 
@@ -36,6 +36,9 @@ def predict():
 
     except urllib.error.HTTPError as error:
         return jsonify({"error": error.code, "message": error.read().decode("utf8", 'ignore')})
+    
+import os
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))  # 🔥 Default to 5000 if no PORT env
+    app.run(debug=True, host="0.0.0.0", port=port)
