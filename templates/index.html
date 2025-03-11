@@ -3,6 +3,9 @@
 <head>
     <title>Genetic Disorder Prediction</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <style>
         body {
             background-color: #f4f4f9;
@@ -29,6 +32,16 @@
         .form-control {
             border-radius: 10px;
             margin-bottom: 20px;
+            text-align: center;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 2fr); /* Membagi menjadi 2 kolom */
+            gap: 20px; /* Jarak antar kolom */
+        }
+
+        .form-grid .mb-3 {
+            margin-bottom: 10px;
         }
         button.btn-success {
             padding: 10px 30px;
@@ -50,194 +63,212 @@
             color: #28a745;
             font-weight: bold;
         }
+        .symptoms-container {
+            display: flex;
+            gap: 20px; /* Jarak antar checkbox */
+            justify-content: center; /* Biar ada di tengah */
+            align-items: center;
+        }
+        .symptoms-container .form-check {
+            display: flex;
+            align-items: center;
+            gap: 5px; /* Jarak antara checkbox dan label */
+        }
     </style>
 </head>
 <body>
 <h1 class="text-success">Genetic Disorder Prediction</h1>
 <form id="predictionForm" class="container">
-    <div class="mb-3">
-        <label for="PatientAge" class="form-label">Patient Age</label>
-        <input type="number" step="0.1" class="form-control" id="PatientAge" name="PatientAge" required>
+    <div class="form-grid">
+
+        <div class="mb-3">
+            <label for="PatientAge" class="form-label">Patient Age</label>
+            <input type="number" step="0.1" class="form-control" id="PatientAge" name="PatientAge" value="4" required>
+        </div>
+        <div class="mb-3">
+            <label for="Genesinmother'sside" class="form-label">Genes in Mother's Side</label>
+            <select class="form-control" id="Genesinmother'sside" name="Genesinmother'sside" required>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="Genesinfather'sside" class="form-label">Genes in Father's Side</label>
+            <select class="form-control" id="Genesinfather'sside" name="Genesinfather'sside" required>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="Maternalgene" class="form-label">Maternal Gene</label>
+            <select class="form-control" id="Maternalgene" name="Maternalgene" required>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="Paternalgene" class="form-label">Paternal Gene</label>
+            <select class="form-control" id="Paternalgene" name="Paternalgene" required>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="Bloodcellcount" class="form-label">Blood Cell Count</label>
+            <input type="number" step="0.1" class="form-control" id="Bloodcellcount" name="Bloodcellcount" value="22" required>
+        </div>
+        <div class="mb-3">
+            <label for="Mother'sage" class="form-label">Mother's Age</label>
+            <input type="number" step="0.1" class="form-control" id="Mother'sage" name="Mother'sage" value="21" required>
+        </div>
+        <div class="mb-3">
+            <label for="Father'sage" class="form-label">Father's Age</label>
+            <input type="number" step="0.1" class="form-control" id="Father'sage" name="Father'sage" value="24" required>
+        </div>
+        <div class="mb-3">
+            <label for="Status" class="form-label">Status</label>
+            <select class="form-control" id="Status" name="Status" required>
+                <option>Alive</option>
+                <option>Deceased</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="RespiratoryRate" class="form-label">Respiratory Rate</label>
+            <select class="form-control" id="RespiratoryRate" name="RespiratoryRate" required>
+                <option>Tachypnea</option>
+                <option>Normal</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="HeartRate" class="form-label">Heart Rate</label>
+            <select class="form-control" id="HeartRate" name="HeartRate" required>
+                <option>Tachycardia</option>
+                <option>Normal</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="Gender" class="form-label">Gender</label>
+            <select class="form-control" id="Gender" name="Gender" required>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Ambiguous</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="Followup" class="form-label">Follow Up</label>
+            <select class="form-control" id="Followup" name="Followup" required>
+                <option>Low</option>
+                <option>High</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="Birthasphyxia" class="form-label">Birth Asphyxia</label>
+            <select class="form-control" id="Birthasphyxia" name="Birthasphyxia" required>
+                <option value="true" selected>Yes</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="Folicaciddetails" class="form-label">Folic Acid Details</label>
+            <select class="form-control" id="Folicaciddetails" name="Folicaciddetails" required>
+                <option value="true">Yes</option>
+                <option value="false" selected>No</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="H/Oseriousmaternalillness" class="form-label">History of Serious Maternal Illness</label>
+            <select class="form-control" id="H/Oseriousmaternalillness" name="H/Oseriousmaternalillness" required>
+                <option value="true" selected>Yes</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="H/Oradiationexposure" class="form-label">History of Radiation Exposure</label>
+            <select class="form-control" id="H/Oradiationexposure" name="H/Oradiationexposure" required>
+                <option value="true">Yes</option>
+                <option value="false" selected>No</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="H/Osubstanceabuse" class="form-label">History of Substance Abuse</label>
+            <select class="form-control" id="H/Osubstanceabuse" name="H/Osubstanceabuse" required>
+                <option value="true">Yes</option>
+                <option value="false" selected>No</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="TotalBloodCellCount" class="form-label">Total Blood Cell Count</label>
+            <input type="number" step="0.1" class="form-control" id="TotalBloodCellCount" name="TotalBloodCellCount" value="12.38" required>
+        </div>
+        <div class="mb-3">
+            <label for="TotalSymptoms" class="form-label">Total Symptoms</label>
+            <input type="number" step="1" class="form-control" id="TotalSymptoms" name="TotalSymptoms" value="2.0" required>
+        </div>
+        <div class="mb-3">
+            <label for="AssistedconceptionIVFART" class="form-label">Assisted Conception (IVF/ART)</label>
+            <select class="form-control" id="AssistedconceptionIVFART" name="AssistedconceptionIVFART" required>
+                <option value="true">Yes</option>
+                <option value="false" selected>No</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="Historyofanomaliesinpreviouspregnancies" class="form-label">History of Anomalies in Previous Pregnancies</label>
+            <select class="form-control" id="Historyofanomaliesinpreviouspregnancies" name="Historyofanomaliesinpreviouspregnancies" required>
+                <option value="true">Yes</option>
+                <option value="false" selected>No</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="Noofpreviousabortion" class="form-label">Number of Previous Abortions</label>
+            <input type="number" step="0.1" class="form-control" id="Noofpreviousabortion" name="Noofpreviousabortion" value="4.0" required>
+        </div>
+        <div class="mb-3">
+            <label for="Birthdefects" class="form-label">Birth Defects</label>
+            <select class="form-control" id="Birthdefects" name="Birthdefects" required>
+                <option>Singular</option>
+                <option>Multiple</option>
+                <option>None</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="WhiteBloodcellcount" class="form-label">White Blood Cell Count</label>
+            <input type="number" step="0.1" class="form-control" id="WhiteBloodcellcount" name="WhiteBloodcellcount" value="3.0" required>
+        </div>
+        <div class="mb-3">
+            <label for="Bloodtestresult" class="form-label">Blood Test Result</label>
+            <select class="form-control" id="Bloodtestresult" name="Bloodtestresult" required>
+                <option>Inconclusive</option>
+                <option>Normal</option>
+                <option>Abnormal</option>
+            </select>
+        </div>
     </div>
-    <div class="mb-3">
-        <label for="Genesinmother'sside" class="form-label">Genes in Mother's Side</label>
-        <select class="form-control" id="Genesinmother'sside" name="Genesinmother'sside" required>
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="Genesinfather'sside" class="form-label">Genes in Father's Side</label>
-        <select class="form-control" id="Genesinfather'sside" name="Genesinfather'sside" required>
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="Maternalgene" class="form-label">Maternal Gene</label>
-        <select class="form-control" id="Maternalgene" name="Maternalgene" required>
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="Paternalgene" class="form-label">Paternal Gene</label>
-        <select class="form-control" id="Paternalgene" name="Paternalgene" required>
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="Bloodcellcount" class="form-label">Blood Cell Count</label>
-        <input type="number" step="0.1" class="form-control" id="Bloodcellcount" name="Bloodcellcount" required>
-    </div>
-    <div class="mb-3">
-        <label for="Mother'sage" class="form-label">Mother's Age</label>
-        <input type="number" step="0.1" class="form-control" id="Mother'sage" name="Mother'sage" required>
-    </div>
-    <div class="mb-3">
-        <label for="Father'sage" class="form-label">Father's Age</label>
-        <input type="number" step="0.1" class="form-control" id="Father'sage" name="Father'sage" required>
-    </div>
-    <div class="mb-3">
-        <label for="Status" class="form-label">Status</label>
-        <select class="form-control" id="Status" name="Status" required>
-            <option>Alive</option>
-            <option>Deceased</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="RespiratoryRate" class="form-label">Respiratory Rate</label>
-        <select class="form-control" id="RespiratoryRate" name="RespiratoryRate" required>
-            <option>Tachypnea</option>
-            <option>Normal</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="HeartRate" class="form-label">Heart Rate</label>
-        <select class="form-control" id="HeartRate" name="HeartRate" required>
-            <option>Tachycardia</option>
-            <option>Normal</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="Gender" class="form-label">Gender</label>
-        <select class="form-control" id="Gender" name="Gender" required>
-            <option>Male</option>
-            <option>Female</option>
-            <option>Ambiguous</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="Followup" class="form-label">Follow Up</label>
-        <select class="form-control" id="Followup" name="Followup" required>
-            <option>Low</option>
-            <option>High</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="Birthasphyxia" class="form-label">Birth Asphyxia</label>
-        <select class="form-control" id="Birthasphyxia" name="Birthasphyxia" required>
-            <option value="true" selected>Yes</option>
-            <option value="false">No</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="Folicaciddetails" class="form-label">Folic Acid Details</label>
-        <select class="form-control" id="Folicaciddetails" name="Folicaciddetails" required>
-            <option value="true">Yes</option>
-            <option value="false" selected>No</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="H/Oseriousmaternalillness" class="form-label">History of Serious Maternal Illness</label>
-        <select class="form-control" id="H/Oseriousmaternalillness" name="H/Oseriousmaternalillness" required>
-            <option value="true" selected>Yes</option>
-            <option value="false">No</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="H/Oradiationexposure" class="form-label">History of Radiation Exposure</label>
-        <select class="form-control" id="H/Oradiationexposure" name="H/Oradiationexposure" required>
-            <option value="true">Yes</option>
-            <option value="false" selected>No</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="H/Osubstanceabuse" class="form-label">History of Substance Abuse</label>
-        <select class="form-control" id="H/Osubstanceabuse" name="H/Osubstanceabuse" required>
-            <option value="true">Yes</option>
-            <option value="false" selected>No</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="TotalBloodCellCount" class="form-label">Total Blood Cell Count</label>
-        <input type="number" step="0.1" class="form-control" id="TotalBloodCellCount" name="TotalBloodCellCount" value="12.38" required>
-    </div>
-    <div class="mb-3">
-        <label for="TotalSymptoms" class="form-label">Total Symptoms</label>
-        <input type="number" step="1" class="form-control" id="TotalSymptoms" name="TotalSymptoms" value="2.0" required>
-    </div>
-    <div class="mb-3">
-        <label for="AssistedconceptionIVFART" class="form-label">Assisted Conception (IVF/ART)</label>
-        <select class="form-control" id="AssistedconceptionIVFART" name="AssistedconceptionIVFART" required>
-            <option value="true">Yes</option>
-            <option value="false" selected>No</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="Historyofanomaliesinpreviouspregnancies" class="form-label">History of Anomalies in Previous Pregnancies</label>
-        <select class="form-control" id="Historyofanomaliesinpreviouspregnancies" name="Historyofanomaliesinpreviouspregnancies" required>
-            <option value="true">Yes</option>
-            <option value="false" selected>No</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="Noofpreviousabortion" class="form-label">Number of Previous Abortions</label>
-        <input type="number" step="0.1" class="form-control" id="Noofpreviousabortion" name="Noofpreviousabortion" value="4.0" required>
-    </div>
-    <div class="mb-3">
-        <label for="Birthdefects" class="form-label">Birth Defects</label>
-        <select class="form-control" id="Birthdefects" name="Birthdefects" required>
-            <option>Singular</option>
-            <option>Multiple</option>
-            <option>None</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="WhiteBloodcellcount" class="form-label">White Blood Cell Count</label>
-        <input type="number" step="0.1" class="form-control" id="WhiteBloodcellcount" name="WhiteBloodcellcount" value="3.0" required>
-    </div>
-    <div class="mb-3">
-        <label for="Bloodtestresult" class="form-label">Blood Test Result</label>
-        <select class="form-control" id="Bloodtestresult" name="Bloodtestresult" required>
-            <option>Inconclusive</option>
-            <option>Normal</option>
-            <option>Abnormal</option>
-        </select>
-    </div>
-    <div class="mb-3">
+    <div class="mb-3 symptoms-section">
         <label class="form-label">Symptoms</label>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="Symptom1" name="Symptom1" value="1.0" checked>
-            <label class="form-check-label" for="Symptom1">Symptom 1</label>
+        <div class="symptoms-container">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="Symptom1" name="Symptom1" value="1.0" checked>
+                <label class="form-check-label" for="Symptom1">Symptom 1</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="Symptom2" name="Symptom2" value="0.0">
+                <label class="form-check-label" for="Symptom2">Symptom 2</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="Symptom3" name="Symptom3" value="1.0" checked>
+                <label class="form-check-label" for="Symptom3">Symptom 3</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="Symptom4" name="Symptom4" value="1.0" checked>
+                <label class="form-check-label" for="Symptom4">Symptom 4</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="Symptom5" name="Symptom5" value="1.0" checked>
+                <label class="form-check-label" for="Symptom5">Symptom 5</label>
+            </div>
         </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="Symptom2" name="Symptom2" value="0.0">
-            <label class="form-check-label" for="Symptom2">Symptom 2</label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="Symptom3" name="Symptom3" value="1.0" checked>
-            <label class="form-check-label" for="Symptom3">Symptom 3</label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="Symptom4" name="Symptom4" value="1.0" checked>
-            <label class="form-check-label" for="Symptom4">Symptom 4</label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="Symptom5" name="Symptom5" value="1.0" checked>
-            <label class="form-check-label" for="Symptom5">Symptom 5</label>
-        </div>
+    </div>
+    
     </div>
 
     <button type="button" onclick="predict()" class="btn btn-success">Predict</button>
@@ -247,8 +278,15 @@
 <script>
     async function predict() {
         const form = document.getElementById('predictionForm');
-        const resultDiv = document.getElementById('result');
-    
+        /*const formData = new FormData(form);
+        let data = {};
+        formData.forEach((value, key) => {
+            if (value === "true" || value === "false") {
+                data[key] = value === "true";
+            } else {
+                data[key] = isNaN(parseFloat(value)) ? value : parseFloat(value);
+            }
+        });*/
         const data = {
             "PatientAge": parseFloat(document.getElementById('PatientAge').value),
             "Genesinmother'sside": document.getElementById("Genesinmother'sside").value === "true",
@@ -282,38 +320,76 @@
             "Symptom4": parseFloat(document.getElementById("Symptom4").value),
             "Symptom5": parseFloat(document.getElementById("Symptom5").value)
         };
-    
-        const response = await fetch(window.location.origin + '/predict', {
+        try {
+        // Fetch data dari API
+        const response = await fetch('/predict', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         });
-    
-        const result = await response.json();
-        resultDiv.innerHTML = "";
-    
-        if (result["Results"] && result["Results"]["WebServiceOutput0"]) {
-            const outputs = result["Results"]["WebServiceOutput0"];
-            outputs.forEach((output, index) => {
-                resultDiv.innerHTML += `<h3>Prediction ${index + 1}: ${output["Scored Labels"]}</h3>`;
-                resultDiv.innerHTML += '<ul class="list-group">';
-                const probabilities = Object.entries(output)
-                    .filter(([key]) => key.startsWith("Scored Probabilities"))
-                    .sort((a, b) => b[1] - a[1]); // Sorting Highest to Lowest
-    
-                probabilities.forEach(([key, value]) => {
-                    resultDiv.innerHTML += `<li class="list-group-item">${key.replace("Scored Probabilities_", "")}: ${Math.round(value * 100)}%</li>`;
-                });
-    
-                resultDiv.innerHTML += '</ul><hr>';
-            });
-        } else {
-            resultDiv.innerHTML = `<p class="text-danger">No Prediction Found!</p>`;
+
+        if (!response.ok) throw new Error("Error fetching prediction");
+
+        const result = await response.json(); // Ambil hasil prediksi dari API
+        console.log(result); // Debugging: Pastikan hasilnya sesuai
+
+        const modalResultDiv = document.getElementById('modalResult');
+        modalResultDiv.innerHTML = `<h3 class="text-success text-center fw-bold">Predicted Disorder: ${result["Scored Label"]}</h3>`;
+
+        // Ubah probabilitas ke array dan sort descending
+        const sortedProbabilities = Object.entries(result["Probabilities"])
+            .map(([key, value]) => [key.replace("Scored Probabilities_", ""), parseFloat(value)])
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 9); // Ambil hanya 9 hasil teratas
+
+        // Menampilkan hasil dalam list dengan progress bar
+        modalResultDiv.innerHTML += '<ul class="list-group">';
+        for (const [key, value] of sortedProbabilities) {
+            const percentage = (value).toFixed(2);
+            const progressBarColor = percentage > 50 ? 'bg-success' : percentage > 20 ? 'bg-info' : percentage > 5 ? 'bg-warning' : 'bg-danger';
+
+            modalResultDiv.innerHTML += `
+                <li class="list-group-item">
+                    <div class="d-flex justify-content-between fw-bold">
+                        <span>${key}</span>
+                        <span>${percentage}%</span>
+                    </div>
+                    <div class="progress mt-1">
+                        <div class="progress-bar ${progressBarColor}" role="progressbar" style="width: ${percentage}%" 
+                            aria-valuenow="${percentage}" aria-valuemin="0" aria-valuemax="100">
+                        </div>
+                    </div>
+                </li>`;
         }
-    }    
+        modalResultDiv.innerHTML += '</ul>';
+
+        // Tampilkan modal
+        let predictionModal = new bootstrap.Modal(document.getElementById('predictionModal'));
+        predictionModal.show();
+
+    } catch (error) {
+        console.error("Error:", error);
+        alert("Failed to fetch prediction. Please try again.");
+    }
+}
 </script>
+
+</script>
+
+<div class="modal fade" id="predictionModal" tabindex="-1" aria-labelledby="predictionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="predictionModalLabel">Prediction Result</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="modalResult">
+                <!-- Hasil prediksi akan ditampilkan di sini -->
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
         
